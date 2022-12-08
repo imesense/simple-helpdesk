@@ -1,0 +1,13 @@
+# Global attributes for forcing line endings normalization of specific files
+
+* text=auto
+
+# Configs
+.gitattributes text eol=lf encoding=utf-8
+.gitignore     text eol=lf encoding=utf-8
+
+# Projects and solutions
+*.sln text eol=crlf encoding=utf-8-bom
+
+# Documents
+*.md text eol=crlf encoding=utf-8
