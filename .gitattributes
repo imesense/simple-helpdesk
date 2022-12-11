@@ -11,6 +11,7 @@
 # Projects and solutions
 *.sln    text eol=crlf encoding=utf-8-bom
 *.csproj text eol=crlf encoding=utf-8
+*.props  text eol=crlf encoding=utf-8
 
 # Sources
 *.cs text eof=crlf encoding=utf-8
