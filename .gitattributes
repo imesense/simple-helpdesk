@@ -3,11 +3,16 @@
 * text=auto
 
 # Configs
-.gitattributes text eol=lf encoding=utf-8
-.gitignore     text eol=lf encoding=utf-8
+.gitattributes text eol=lf   encoding=utf-8
+.gitignore     text eol=lf   encoding=utf-8
+*.json         text eol=crlf encoding=utf-8
 
 # Projects and solutions
-*.sln text eol=crlf encoding=utf-8-bom
+*.sln    text eol=crlf encoding=utf-8-bom
+*.csproj text eol=crlf encoding=utf-8
+
+# Sources
+*.cs text eof=crlf encoding=utf-8
 
 # Documents
 *.md text eol=crlf encoding=utf-8
