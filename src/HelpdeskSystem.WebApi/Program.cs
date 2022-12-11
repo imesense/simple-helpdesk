@@ -1,47 +1,41 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
 
-namespace HelpdeskSystem.WebApi
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
+namespace HelpdeskSystem.WebApi;
 
-            // Add services to the container.
+public class Program {
+    public static void Main(string[] args) {
+        var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+        // Add services to the container
 
-            builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-                .AddNegotiate();
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
-            builder.Services.AddAuthorization(options =>
-            {
-                // By default, all incoming requests will be authorized according to the default policy.
-                options.FallbackPolicy = options.DefaultPolicy;
-            });
+        builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+            .AddNegotiate();
 
-            var app = builder.Build();
+        builder.Services.AddAuthorization(options => {
+            // By default, all incoming requests will be authorized according
+            // to the default policy
+            options.FallbackPolicy = options.DefaultPolicy;
+        });
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+        var app = builder.Build();
 
-            app.UseHttpsRedirection();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
+        // Configure the HTTP request pipeline
+        if (app.Environment.IsDevelopment()) {
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
     }
 }
