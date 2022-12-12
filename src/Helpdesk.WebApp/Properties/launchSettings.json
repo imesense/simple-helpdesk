@@ -9,7 +9,7 @@
         }
     },
     "profiles": {
-        "HelpdeskSystem.WebApi": {
+        "Helpdesk.WebApp": {
             "commandName": "Project",
             "dotnetRunMessages": true,
             "launchBrowser": true,
