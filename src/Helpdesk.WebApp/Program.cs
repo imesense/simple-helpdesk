@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
 
-namespace HelpdeskSystem.WebApi;
+namespace Helpdesk.WebApp;
 
 public class Program {
     public static void Main(string[] args) {

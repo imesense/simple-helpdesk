@@ -1,4 +1,4 @@
-namespace HelpdeskSystem.WebApi {
+namespace Helpdesk.WebApp {
     public class WeatherForecast {
         public DateTime Date { get; set; }
 

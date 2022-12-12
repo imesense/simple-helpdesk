@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HelpdeskSystem.WebApi.Controllers;
+namespace Helpdesk.WebApp.Controllers;
 
 [Authorize]
 [ApiController]
