@@ -19,22 +19,17 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		NoVariablesDefault|Any CPU = NoVariablesDefault|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BB8AA241-55FE-4D57-A3E1-95E36504A4C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB8AA241-55FE-4D57-A3E1-95E36504A4C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB8AA241-55FE-4D57-A3E1-95E36504A4C3}.NoVariablesDefault|Any CPU.ActiveCfg = Release|Any CPU
-		{BB8AA241-55FE-4D57-A3E1-95E36504A4C3}.NoVariablesDefault|Any CPU.Build.0 = Release|Any CPU
 		{BB8AA241-55FE-4D57-A3E1-95E36504A4C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB8AA241-55FE-4D57-A3E1-95E36504A4C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.Debug|Any CPU.ActiveCfg = NoVariablesDefault
-		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.Debug|Any CPU.Build.0 = NoVariablesDefault
-		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.NoVariablesDefault|Any CPU.ActiveCfg = NoVariablesDefault
-		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.NoVariablesDefault|Any CPU.Build.0 = NoVariablesDefault
-		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.Release|Any CPU.ActiveCfg = NoVariablesDefault
-		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.Release|Any CPU.Build.0 = NoVariablesDefault
+		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70FF5FF1-9DD5-40D5-8106-FDFEC73304D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
