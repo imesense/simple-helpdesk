@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  helpdesk.webapp:
+    image: ${DOCKER_REGISTRY-}helpdeskwebapp
+    build:
+      context: .
+      dockerfile: src/Helpdesk.WebApp/Dockerfile
