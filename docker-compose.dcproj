@@ -6,7 +6,7 @@
     <ProjectGuid>70ff5ff1-9dd5-40d5-8106-fdfec73304d9</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>helpdesk.webapp</DockerServiceName>
+    <DockerServiceName>helpdeskwebapp</DockerServiceName>
     <DockerComposeBaseFilePath>$(ProjectDir)/docker-compose</DockerComposeBaseFilePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
