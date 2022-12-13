@@ -3,7 +3,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <UserSecretsId>6a9264aa-10b8-4214-aa35-35d3e8c2b9af</UserSecretsId>
+        <UserSecretsId>aspnet-Helpdesk.WebApp-6a9264aa-10b8-4214-aa35-35d3e8c2b9af</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <DockerfileContext>$(ProjectDir)</DockerfileContext>
         <DockerComposeProjectPath>$(ProjectDir)\docker-compose.dcproj</DockerComposeProjectPath>
