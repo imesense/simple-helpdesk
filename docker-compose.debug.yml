@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  helpdeskwebapp:
+    image: ${DOCKER_REGISTRY-}helpdeskwebapp
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
