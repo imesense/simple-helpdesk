@@ -1,3 +1,5 @@
+using Helpdesk.WebApp.Models;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
