@@ -1,15 +1,25 @@
 {
     "$schema": "https://json.schemastore.org/launchsettings.json",
     "iisSettings": {
-        "windowsAuthentication": true,
-        "anonymousAuthentication": false,
+        "windowsAuthentication": false,
+        "anonymousAuthentication": true,
         "iisExpress": {
             "applicationUrl": "http://localhost:53687",
             "sslPort": 44319
         }
     },
     "profiles": {
-        "Helpdesk.WebApp": {
+        "Project (HTTP)": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "applicationUrl": "http://localhost:5082",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        "Project (HTTPS)": {
             "commandName": "Project",
             "dotnetRunMessages": true,
             "launchBrowser": true,
