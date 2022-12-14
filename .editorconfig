@@ -32,6 +32,26 @@ indent_size = 4
 indent_style = space
 insert_final_newline = true
 
+# YAML-based files
+[*.{yml,yaml}]
+
+# Common settings
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+
+# Docker files
+[Dockerfile*]
+
+# Common settings
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+
 # C# code style settings
 [*.cs]
 
