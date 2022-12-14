@@ -8,3 +8,6 @@
 # Build results
 bin/
 obj/
+
+# Library Manager packages
+**/wwwroot/lib/

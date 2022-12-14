@@ -31,5 +31,6 @@
         <None Include="$(ProjectDir)\docker-compose.override.yml">
             <DependentUpon>$(ProjectDir)\docker-compose.yml</DependentUpon>
         </None>
+        <None Include="$(ProjectDir)\libman.json" />
     </ItemGroup>
 </Project>

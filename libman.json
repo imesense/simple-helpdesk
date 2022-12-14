@@ -1,0 +1,41 @@
+{
+    "$schema": "https://json.schemastore.org/libman.json",
+    "version": "1.0",
+    "defaultProvider": "cdnjs",
+    "libraries": [
+        {
+            "library": "bootstrap@5.1.0",
+            "destination": "src/Helpdesk.WebApp/wwwroot/lib/bootstrap/",
+            "files": [
+                "js/bootstrap.js",
+                "css/bootstrap-grid.css",
+                "css/bootstrap-reboot.css",
+                "css/bootstrap-utilities.css",
+                "css/bootstrap.css"
+            ]
+        },
+        {
+            "library": "jquery@3.6.0",
+            "destination": "src/Helpdesk.WebApp/wwwroot/lib/jquery/",
+            "files": [
+                "jquery.js"
+            ]
+        },
+        {
+            "provider": "unpkg",
+            "library": "jquery-validation@1.17.0",
+            "destination": "src/Helpdesk.WebApp/wwwroot/lib/jquery-validation/",
+            "files": [
+                "dist/additional-methods.js",
+                "dist/jquery.validate.js"
+            ]
+        },
+        {
+            "library": "jquery-validation-unobtrusive@4.0.0",
+            "destination": "src/Helpdesk.WebApp/wwwroot/lib/jquery-validation-unobtrusive/",
+            "files": [
+                "jquery.validate.unobtrusive.js"
+            ]
+        }
+    ]
+}
