@@ -6,7 +6,11 @@
 .gitattributes text eol=lf   encoding=utf-8
 .gitignore     text eol=lf   encoding=utf-8
 .editorconfig  text eol=crlf encoding=utf-8
+.dockerignore  text eol=lf   encoding=utf-8
+Dockerfile*    text eof=lf   encoding=utf-8
 *.json         text eol=crlf encoding=utf-8
+*.yml          text eof=lf   encoding=utf-8
+*.yaml         text eof=lf   encoding=utf-8
 
 # Projects and solutions
 *.sln    text eol=crlf encoding=utf-8-bom
