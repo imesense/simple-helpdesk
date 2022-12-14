@@ -6,7 +6,6 @@
         <UserSecretsId>aspnet-Helpdesk.WebApp-6a9264aa-10b8-4214-aa35-35d3e8c2b9af</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <DockerfileContext>$(ProjectDir)</DockerfileContext>
-        <DockerComposeProjectPath>$(ProjectDir)\docker-compose.dcproj</DockerComposeProjectPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -25,5 +24,12 @@
     <ItemGroup>
         <None Include="$(ProjectDir)\Dockerfile" />
         <None Include="$(ProjectDir)\.dockerignore" />
+        <None Include="$(ProjectDir)\docker-compose.yml" />
+        <None Include="$(ProjectDir)\docker-compose.debug.yml">
+            <DependentUpon>$(ProjectDir)\docker-compose.yml</DependentUpon>
+        </None>
+        <None Include="$(ProjectDir)\docker-compose.override.yml">
+            <DependentUpon>$(ProjectDir)\docker-compose.yml</DependentUpon>
+        </None>
     </ItemGroup>
 </Project>
