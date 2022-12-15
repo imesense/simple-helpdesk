@@ -26,10 +26,10 @@
         <None Include="$(ProjectDir)\.dockerignore" />
         <None Include="$(ProjectDir)\docker-compose.yml" />
         <None Include="$(ProjectDir)\docker-compose.debug.yml">
-            <DependentUpon>$(ProjectDir)\docker-compose.yml</DependentUpon>
+            <DependentUpon>docker-compose.yml</DependentUpon>
         </None>
         <None Include="$(ProjectDir)\docker-compose.override.yml">
-            <DependentUpon>$(ProjectDir)\docker-compose.yml</DependentUpon>
+            <DependentUpon>docker-compose.yml</DependentUpon>
         </None>
         <None Include="$(ProjectDir)\libman.json" />
     </ItemGroup>
