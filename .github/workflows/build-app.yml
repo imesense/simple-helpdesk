@@ -1,0 +1,74 @@
+name: 'Build application'
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - '.github/workflows/**'
+      - 'src/**'
+      - '*.sln'
+      - '*.props'
+      - '*.targets'
+      - '*.yml'
+      - 'Dockerfile'
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - '.github/workflows/**'
+      - 'src/**'
+      - '*.sln'
+      - '*.props'
+      - '*.targets'
+      - '*.yml'
+      - 'Dockerfile'
+
+jobs:
+  build-app:
+    name: 'Building'
+
+    strategy:
+      matrix:
+        system:
+          - windows-latest
+          - ubuntu-latest
+        config:
+          - Debug
+          - Release
+
+    runs-on: ${{ matrix.system }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+
+      - name: Setup Library Manager
+        run: |
+          dotnet tool install --global Microsoft.Web.LibraryManager.Cli
+
+      - name: Restore dependencies
+        run: |
+          dotnet restore HelpdeskSystem.sln
+          libman restore
+
+      - name: Build solution
+        run: |
+          dotnet build HelpdeskSystem.sln -p:Configuration=${{ matrix.config }} --no-restore
+
+      - name: Build image
+        run: |
+          docker build . --file Dockerfile --tag helpdesksystem:$(date +%s)
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: bin-${{ matrix.config }}-${{ github.sha }}
+          path: bin/${{ matrix.config }}/
