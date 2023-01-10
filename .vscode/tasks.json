@@ -36,6 +36,16 @@
                 "${workspaceFolder}/src/Helpdesk.WebApp/Helpdesk.WebApp.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "restore",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "restore",
+                "${workspaceFolder}/src/Helpdesk.WebApp/Helpdesk.WebApp.csproj"
+            ],
+            "problemMatcher": "$msCompile"
         }
     ]
 }
