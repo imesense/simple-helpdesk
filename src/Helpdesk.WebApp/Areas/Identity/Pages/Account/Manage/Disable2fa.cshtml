@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model Disable2faModel
 @{
     ViewData["Title"] = "Disable two-factor authentication (2FA)";
@@ -6,12 +6,14 @@
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
+
 <h3>@ViewData["Title"]</h3>
 
 <div class="alert alert-warning" role="alert">
     <p>
         <strong>This action only disables 2FA.</strong>
     </p>
+
     <p>
         Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key
         used in an authenticator app you should <a asp-page="./ResetAuthenticator">reset your authenticator keys.</a>
