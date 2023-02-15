@@ -13,15 +13,20 @@ public class HomeController : Controller {
         _logger = logger;
     }
 
+    [HttpGet]
+    [Route("")]
     public IActionResult Index() {
         return View();
     }
 
+    [HttpGet]
+    [Route("Privacy")]
     public IActionResult Privacy() {
         return View();
     }
 
-    [Route("/Error/")]
+    [HttpGet]
+    [Route("Error")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error() {
         return View(new ErrorViewModel {
