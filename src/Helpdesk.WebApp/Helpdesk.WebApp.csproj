@@ -5,7 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>aspnet-Helpdesk.WebApp-6a9264aa-10b8-4214-aa35-35d3e8c2b9af</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <DockerfileContext>$(ProjectDir)</DockerfileContext>
+        <DockerfileContext>..\..</DockerfileContext>
+        <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,18 +21,5 @@
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Include="$(ProjectDir)\Dockerfile" />
-        <None Include="$(ProjectDir)\.dockerignore" />
-        <None Include="$(ProjectDir)\docker-compose.yml" />
-        <None Include="$(ProjectDir)\docker-compose.debug.yml">
-            <DependentUpon>docker-compose.yml</DependentUpon>
-        </None>
-        <None Include="$(ProjectDir)\docker-compose.override.yml">
-            <DependentUpon>docker-compose.yml</DependentUpon>
-        </None>
-        <None Include="$(ProjectDir)\libman.json" />
     </ItemGroup>
 </Project>
