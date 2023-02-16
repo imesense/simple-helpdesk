@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.EntityFrameworkCore;
 
 using Helpdesk.WebApp.Data;
@@ -16,10 +16,15 @@ public class Program {
             options.UseSqlServer(connectionString));
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<ApplicationDbContext>();
-
         builder.Services.AddControllersWithViews();
+
+        builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+            .AddNegotiate();
+
+        builder.Services.AddAuthorization(options => {
+            // By default, all incoming requests will be authorized according to the default policy
+            options.FallbackPolicy = options.DefaultPolicy;
+        });
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
@@ -48,7 +53,6 @@ public class Program {
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
-        app.MapRazorPages();
 
         app.Run();
     }
