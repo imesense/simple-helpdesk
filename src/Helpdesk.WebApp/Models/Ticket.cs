@@ -1,15 +1,26 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Helpdesk.WebApp.Models;
 
-public sealed class Ticket : Entity {
+[Table("Tickets")]
+public class Ticket {
+    [Key]
+    public int TicketId { get; set; }
+    [Required]
     public DateTime Date { get; set; }
-    public string Description { get; set; } = string.Empty;
+    [Required]
+    public string? Description { get; set; }
 
     public int StatusId { get; set; }
+    [ForeignKey(nameof(StatusId))]
     public Status? Status { get; set; }
 
     public int UserId { get; set; }
+    [ForeignKey(nameof(UserId))]
     public User? User { get; set; }
 
     public int CabinetId { get; set; }
+    [ForeignKey(nameof(CabinetId))]
     public Cabinet? Cabinet { get; set; }
 }

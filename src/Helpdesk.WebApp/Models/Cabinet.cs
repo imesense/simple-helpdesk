@@ -1,10 +1,19 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Helpdesk.WebApp.Models;
 
-public sealed class Cabinet : Entity {
-    public string Number { get; set; } = string.Empty;
+[Table("Cabinets")]
+public class Cabinet {
+    [Key]
+    public int CabinetId { get; set; }
+    [Required]
+    public string? Number { get; set; }
 
     public int LocationId { get; set; }
+    [ForeignKey(nameof(LocationId))]
     public Location? Location { get; set; }
 
-    public IList<Ticket> Tickets { get; set; } = new List<Ticket>();
+    [InverseProperty(nameof(Ticket.Cabinet))]
+    public ICollection<Ticket>? Tickets { get; set; }
 }

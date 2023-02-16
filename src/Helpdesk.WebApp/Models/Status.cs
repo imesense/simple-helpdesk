@@ -1,7 +1,15 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Helpdesk.WebApp.Models;
 
-public sealed class Status : Entity {
-    public string Description { get; set; } = string.Empty;
+[Table("Statuses")]
+public class Status {
+    [Key]
+    public int StatusId { get; set; }
+    [Required]
+    public string? Description { get; set; }
 
-    public IList<Ticket> Tickets { get; set; } = new List<Ticket>();
+    [InverseProperty(nameof(Ticket.Status))]
+    public ICollection<Ticket>? Tickets { get; set; }
 }

@@ -1,8 +1,16 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Helpdesk.WebApp.Models;
 
-public sealed class Location : Entity {
-    public string Name { get; set; } = string.Empty;
+[Table("Locations")]
+public class Location {
+    [Key]
+    public int LocationId { get; set; }
+    [Required]
+    public string? Name { get; set; }
     public string? Address { get; set; }
 
-    public IList<Cabinet> Cabinets { get; set; } = new List<Cabinet>();
+    [InverseProperty(nameof(Cabinet.Location))]
+    public ICollection<Cabinet>? Cabinets { get; set; }
 }

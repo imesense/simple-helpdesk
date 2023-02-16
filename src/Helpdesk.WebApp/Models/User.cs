@@ -1,9 +1,18 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Helpdesk.WebApp.Models;
 
-public sealed class User : Entity {
-    public string Name { get; set; } = string.Empty;
-    public string Phone { get; set; } = string.Empty;
+[Table("Users")]
+public class User {
+    [Key]
+    public int UserId { get; set; }
+    [Required]
+    public string? Name { get; set; }
+    [Required]
+    public string? Phone { get; set; }
     public string? Position { get; set; }
 
-    public IList<Ticket> Tickets { get; set; } = new List<Ticket>();
+    [InverseProperty(nameof(Ticket.User))]
+    public ICollection<Ticket>? Tickets { get; set; }
 }
