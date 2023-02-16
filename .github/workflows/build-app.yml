@@ -59,6 +59,7 @@ jobs:
       - name: Restore dependencies
         run: |
           dotnet restore HelpdeskSystem.sln
+          cd src/Helpdesk.WebApp
           libman restore
 
       - name: Build solution
