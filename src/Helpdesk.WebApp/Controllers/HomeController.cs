@@ -20,12 +20,6 @@ public class HomeController : Controller {
     }
 
     [HttpGet]
-    [Route("Privacy")]
-    public IActionResult Privacy() {
-        return View();
-    }
-
-    [HttpGet]
     [Route("Error")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error() {
