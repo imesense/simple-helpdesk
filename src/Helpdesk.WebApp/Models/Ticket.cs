@@ -7,7 +7,7 @@ namespace Helpdesk.WebApp.Models;
 public class Ticket {
     [Key]
     public int TicketId { get; set; }
-    [Required]
+    [Required, DataType(DataType.Date)]
     public DateTime Date { get; set; }
     [Required]
     public string? Description { get; set; }
