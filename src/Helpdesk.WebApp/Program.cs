@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.EntityFrameworkCore;
 
-using Helpdesk.WebApp.Data;
+using Helpdesk.WebApp.Models;
 
 namespace Helpdesk.WebApp;
 
