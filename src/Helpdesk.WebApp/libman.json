@@ -8,17 +8,23 @@
             "destination": "wwwroot/lib/bootstrap/",
             "files": [
                 "js/bootstrap.js",
+                "js/bootstrap.min.js",
                 "css/bootstrap-grid.css",
+                "css/bootstrap-grid.min.css",
                 "css/bootstrap-reboot.css",
+                "css/bootstrap-reboot.min.css",
                 "css/bootstrap-utilities.css",
-                "css/bootstrap.css"
+                "css/bootstrap-utilities.min.css",
+                "css/bootstrap.css",
+                "css/bootstrap.min.css"
             ]
         },
         {
             "library": "jquery@3.6.0",
             "destination": "wwwroot/lib/jquery/",
             "files": [
-                "jquery.js"
+                "jquery.js",
+                "jquery.min.js"
             ]
         },
         {
@@ -27,14 +33,16 @@
             "destination": "wwwroot/lib/jquery-validation/",
             "files": [
                 "dist/additional-methods.js",
-                "dist/jquery.validate.js"
+                "dist/jquery.validate.js",
+                "dist/jquery.validate.min.js"
             ]
         },
         {
             "library": "jquery-validation-unobtrusive@4.0.0",
             "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
             "files": [
-                "jquery.validate.unobtrusive.js"
+                "jquery.validate.unobtrusive.js",
+                "jquery.validate.unobtrusive.min.js"
             ]
         }
     ]
