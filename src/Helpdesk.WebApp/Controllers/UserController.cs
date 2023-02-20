@@ -1,19 +1,38 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+using Helpdesk.WebApp.Models;
 
 namespace Helpdesk.WebApp.Controllers;
 
 [Route("[controller]")]
 public class UserController : Controller {
+    private readonly ILogger<UserController> _logger;
+    private readonly ApplicationDbContext _context;
+
+    public UserController(ILogger<UserController> logger,
+        ApplicationDbContext context) {
+        _logger = logger;
+        _context = context;
+    }
+
     [HttpGet]
     [Route("")]
-    public IActionResult Index() {
-        return View();
+    public async Task<IActionResult> Index() {
+        var models = await _context.Users.ToListAsync();
+        return View(models);
     }
 
     [HttpGet]
     [Route("[action]/{id}")]
-    public IActionResult Details(int id) {
-        return View();
+    public async Task<IActionResult> Details(int id) {
+        var model = await _context.Users
+            .Where(x => x.UserId == id)
+            .FirstOrDefaultAsync();
+        if (model is not null) {
+            return View(model);
+        }
+        return NotFound();
     }
 
     [HttpGet]
@@ -25,45 +44,76 @@ public class UserController : Controller {
     [HttpPost]
     [Route("[action]")]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(IFormCollection collection) {
-        try {
+    public async Task<IActionResult> Create(User model) {
+        if (model is not null) {
+            _context.Users.Add(model);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        } catch {
-            return View();
         }
+        return View(model);
     }
 
     [HttpGet]
     [Route("[action]/{id}")]
-    public IActionResult Edit(int id) {
-        return View();
+    public async Task<IActionResult> Edit(int id) {
+        var model = await _context.Users
+            .Where(x => x.UserId == id)
+            .FirstOrDefaultAsync();
+        if (model is not null) {
+            return View(model);
+        }
+        return NotFound();
     }
 
     [HttpPost]
     [Route("[action]/{id}")]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(int id, IFormCollection collection) {
-        try {
+    public async Task<IActionResult> Edit(int id, User model) {
+        if (model is not null) {
+            var record = await _context.Users
+                .Where(x => x.UserId == id)
+                .FirstOrDefaultAsync();
+            if (record is null) {
+                return NotFound();
+            }
+
+            record.Name = model.Name;
+            record.Phone = model.Phone;
+            record.Position = model.Position;
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        } catch {
-            return View();
         }
+        return View(model);
     }
 
     [HttpGet]
     [Route("[action]/{id}")]
-    public IActionResult Delete(int id) {
-        return View();
+    public async Task<IActionResult> Delete(int id) {
+        var model = await _context.Users
+            .Where(x => x.UserId == id)
+            .FirstOrDefaultAsync();
+        if (model is not null) {
+            return View(model);
+        }
+        return NotFound();
     }
 
     [HttpPost]
     [Route("[action]/{id}")]
     [ValidateAntiForgeryToken]
-    public IActionResult Delete(int id, IFormCollection collection) {
-        try {
+    public async Task<IActionResult> Delete(int id, User model) {
+        if (model is not null) {
+            var record = await _context.Users
+                .Where(x => x.UserId == id)
+                .FirstOrDefaultAsync();
+            if (record is null) {
+                return NotFound();
+            }
+
+            _context.Users.Remove(model);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        } catch {
-            return View();
         }
+        return View(model);
     }
 }

@@ -1,19 +1,38 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+using Helpdesk.WebApp.Models;
 
 namespace Helpdesk.WebApp.Controllers;
 
 [Route("[controller]")]
 public class StatusController : Controller {
+    private readonly ILogger<StatusController> _logger;
+    private readonly ApplicationDbContext _context;
+
+    public StatusController(ILogger<StatusController> logger,
+        ApplicationDbContext context) {
+        _logger = logger;
+        _context = context;
+    }
+
     [HttpGet]
     [Route("")]
-    public IActionResult Index() {
-        return View();
+    public async Task<IActionResult> Index() {
+        var models = await _context.Statuses.ToListAsync();
+        return View(models);
     }
 
     [HttpGet]
     [Route("[action]/{id}")]
-    public IActionResult Details(int id) {
-        return View();
+    public async Task<IActionResult> Details(int id) {
+        var model = await _context.Statuses
+            .Where(x => x.StatusId == id)
+            .FirstOrDefaultAsync();
+        if (model is not null) {
+            return View(model);
+        }
+        return NotFound();
     }
 
     [HttpGet]
@@ -25,45 +44,74 @@ public class StatusController : Controller {
     [HttpPost]
     [Route("[action]")]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(IFormCollection collection) {
-        try {
+    public async Task<IActionResult> Create(Status model) {
+        if (model is not null) {
+            _context.Statuses.Add(model);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        } catch {
-            return View();
         }
+        return View(model);
     }
 
     [HttpGet]
     [Route("[action]/{id}")]
-    public IActionResult Edit(int id) {
-        return View();
+    public async Task<IActionResult> Edit(int id) {
+        var model = await _context.Statuses
+            .Where(x => x.StatusId == id)
+            .FirstOrDefaultAsync();
+        if (model is not null) {
+            return View(model);
+        }
+        return NotFound();
     }
 
     [HttpPost]
     [Route("[action]/{id}")]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(int id, IFormCollection collection) {
-        try {
+    public async Task<IActionResult> Edit(int id, Status model) {
+        if (model is not null) {
+            var record = await _context.Statuses
+                .Where(x => x.StatusId == id)
+                .FirstOrDefaultAsync();
+            if (record is null) {
+                return NotFound();
+            }
+
+            record.Description = model.Description;
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        } catch {
-            return View();
         }
+        return View(model);
     }
 
     [HttpGet]
     [Route("[action]/{id}")]
-    public IActionResult Delete(int id) {
-        return View();
+    public async Task<IActionResult> Delete(int id) {
+        var model = await _context.Statuses
+            .Where(x => x.StatusId == id)
+            .FirstOrDefaultAsync();
+        if (model is not null) {
+            return View(model);
+        }
+        return NotFound();
     }
 
     [HttpPost]
     [Route("[action]/{id}")]
     [ValidateAntiForgeryToken]
-    public IActionResult Delete(int id, IFormCollection collection) {
-        try {
+    public async Task<IActionResult> Delete(int id, Status model) {
+        if (model is not null) {
+            var record = await _context.Statuses
+                .Where(x => x.StatusId == id)
+                .FirstOrDefaultAsync();
+            if (record is null) {
+                return NotFound();
+            }
+
+            _context.Statuses.Remove(record);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        } catch {
-            return View();
         }
+        return View(model);
     }
 }
