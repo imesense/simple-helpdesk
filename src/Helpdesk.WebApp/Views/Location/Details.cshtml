@@ -1,2 +1,56 @@
+@model Location
 @{
+    ViewData["Title"] = "Отдел ID " + Model.LocationId;
+}
+
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Отдел ID @Model.LocationId</h1>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Поле</th>
+                <th>Значение</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <p>ID отдела</p>
+                </td>
+                <td>
+                    <p>@Model.LocationId</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Название</p>
+                </td>
+                <td>
+                    <p>@Model.Name</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Адрес</p>
+                </td>
+                <td>
+                    <p>@Model.Address</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

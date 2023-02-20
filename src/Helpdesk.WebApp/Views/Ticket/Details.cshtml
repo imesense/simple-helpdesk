@@ -1,2 +1,84 @@
+@model Ticket
 @{
+    ViewData["Title"] = "Заявка ID " + Model.TicketId;
+}
+
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Заявка ID @Model.TicketId</h1>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Поле</th>
+                <th>Значение</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><p>ID заявки</p></td>
+                <td><p>@Model.TicketId</p></td>
+            </tr>
+
+            <tr>
+                <td><p>Дата подачи</p></td>
+                <td><p>@Model.Date</p></td>
+            </tr>
+
+            <tr>
+                <td><p>Описание</p></td>
+                <td><p>@Model.Description</p></td>
+            </tr>
+
+            <tr>
+                <td><p>Статус</p></td>
+                <td><p>@Model.Status?.Description</p></td>
+            </tr>
+
+            <tr>
+                <td><p>ID пользователя</p></td>
+                <td><p>@Model.UserId</p></td>
+            </tr>
+
+            <tr>
+                <td><p>Имя пользователя</p></td>
+                <td><p>@Model.User?.Name</p></td>
+            </tr>
+
+            <tr>
+                <td><p>Номер телефона</p></td>
+                <td><p>@Model.User?.Phone</p></td>
+            </tr>
+
+            <tr>
+                <td><p>Должность</p></td>
+                <td><p>@Model.User?.Position</p></td>
+            </tr>
+
+            <tr>
+                <td><p>ID кабинета</p></td>
+                <td><p>@Model.CabinetId</p></td>
+            </tr>
+
+            <tr>
+                <td><p>Номер кабинета</p></td>
+                <td><p>@Model.Cabinet?.Number</p></td>
+            </tr>
+
+            <tr>
+                <td><p>Название отдела</p></td>
+                <td><p>@Model.Cabinet?.Location?.Name</p></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

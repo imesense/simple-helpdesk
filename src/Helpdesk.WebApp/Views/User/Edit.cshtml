@@ -1,2 +1,74 @@
+@model User
 @{
+    ViewData["Title"] = "Изменение пользователя";
+}
+
+<form asp-action="Edit">
+    <div class="container border p-3">
+        <h1 class="text-primary">Изменение пользователя</h1>
+
+        <hr />
+
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger" />
+
+            <div class="col-2">
+                <label asp-for="Name" class="pt-2" style="font-size: 20px;">Имя</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Name" disabled class="form-control" />
+                <span asp-validation-for="Name" class="text-danger" />
+            </div>
+            <div class="col-2">
+                <label asp-for="Name" class="pt-2" style="font-size: 20px;" />
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Phone" class="pt-2" style="font-size: 20px;">Телефон</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Phone" disabled class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger" />
+            </div>
+            <div class="col-2">
+                <label asp-for="Phone" class="pt-2" style="font-size: 20px;" />
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Position" class="pt-2" style="font-size: 20px;">Должность</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Position" disabled class="form-control" />
+                <span asp-validation-for="Position" class="text-danger" />
+            </div>
+            <div class="col-2">
+                <label asp-for="Position" class="pt-2" style="font-size: 20px;" />
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger" />
+            </div>
+
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Вернуться к списку</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Обновить" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

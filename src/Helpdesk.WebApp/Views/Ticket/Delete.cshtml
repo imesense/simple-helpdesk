@@ -1,2 +1,70 @@
+@model Ticket
 @{
+    ViewData["Title"] = "Удаление заявки";
+}
+
+<form asp-action="Delete">
+    <input asp-for="TicketId" hidden />
+
+    <div class="container border p-3">
+        <h1 class="text-primary">Удаление заявки</h1>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Date" class="pt-2" style="font-size: 20px;">Дата</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Date" disabled class="form-control" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Description" class="pt-2" style="font-size: 20px;">Описание</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Description" disabled class="form-control" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="StatusId" class="pt-2" style="font-size: 20px;">Статус</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="StatusId" asp-items="(SelectList)@ViewData["Statuses"]!" disabled class="form-control">
+                    <option value="" />
+                </select>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="UserId" class="pt-2" style="font-size: 20px;">Пользователь</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="UserId" asp-items="(SelectList)@ViewData["Users"]!" disabled class="form-control">
+                    <option value="" />
+                </select>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="CabinetId" class="pt-2" style="font-size: 20px;">Кабинет</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="CabinetId" asp-items="(SelectList)@ViewData["Cabinets"]!" disabled class="form-control">
+                    <option value="" />
+                </select>
+            </div>
+
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Вернуться к списку</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Удалить" class="btn btn-danger form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

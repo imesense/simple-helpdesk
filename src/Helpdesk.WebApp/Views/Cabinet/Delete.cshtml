@@ -1,2 +1,45 @@
+@model Cabinet
 @{
+    ViewData["Title"] = "Удаление кабинета";
+}
+
+<form asp-action="Delete">
+    <input asp-for="CabinetId" hidden />
+
+    <div class="container border p-3">
+        <h1 class="text-primary">Удаление кабинета</h1>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-2">
+                <label asp-for="Number" class="pt-2" style="font-size: 20px;">Номер</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Number" disabled class="form-control" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="LocationId" class="pt-2" style="font-size: 20px;">Отдел</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="LocationId" asp-items="(SelectList)@ViewData["Locations"]!" disabled class="form-control">
+                    <option value="" />
+                </select>
+            </div>
+
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Вернуться к списку</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Удалить" class="btn btn-danger form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

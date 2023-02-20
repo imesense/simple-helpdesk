@@ -1,2 +1,65 @@
+@model User
 @{
+    ViewData["Title"] = "Пользователь ID " + Model.UserId;
+}
+
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Пользователь ID @Model.UserId</h1>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Поле</th>
+                <th>Значение</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <p>ID пользователя</p>
+                </td>
+                <td>
+                    <p>@Model.UserId</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Имя</p>
+                </td>
+                <td>
+                    <p>@Model.Name</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Телефон</p>
+                </td>
+                <td>
+                    <p>@Model.Phone</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Должность</p>
+                </td>
+                <td>
+                    <p>@Model.Position</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

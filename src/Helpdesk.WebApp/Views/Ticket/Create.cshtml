@@ -1,2 +1,75 @@
+@model Ticket
 @{
+    ViewData["Title"] = "Добавление заявки";
+}
+
+<form asp-action="Create">
+    <div class="container border p-3">
+        <h1 class="text-primary">Добавление заявки</h1>
+
+        <hr />
+
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger" />
+
+            <div class="col-2">
+                <label asp-for="Date" class="pt-2" style="font-size: 20px;">Дата подачи</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Description" class="pt-2" style="font-size: 20px;">Описание</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="StatusId" class="pt-2" style="font-size: 20px;">Статус</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="StatusId" asp-items="(SelectList)@ViewData["Statuses"]!" class="form-control">
+                    <option value="" />
+                </select>
+                <span asp-validation-for="StatusId" class="text-danger" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="UserId" class="pt-2" style="font-size: 20px;">Пользователь</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="UserId" asp-items="(SelectList)@ViewData["Users"]!" class="form-control">
+                    <option value="" />
+                </select>
+                <span asp-validation-for="UserId" class="text-danger" />
+            </div>
+
+            <div class="col-2">
+                <label asp-for="CabinetId" class="pt-2" style="font-size: 20px;">Кабинет</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="CabinetId" asp-items="(SelectList)@ViewData["Cabinets"]!" class="form-control">
+                    <option value="" />
+                </select>
+                <span asp-validation-for="CabinetId" class="text-danger" />
+            </div>
+
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Вернуться к списку</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Создать" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

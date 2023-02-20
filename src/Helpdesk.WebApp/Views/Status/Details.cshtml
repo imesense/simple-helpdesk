@@ -1,2 +1,47 @@
+@model Status
 @{
+    ViewData["Title"] = "Статус ID " + Model.StatusId;
+}
+
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Статус ID @Model.StatusId</h1>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Поле</th>
+                <th>Значение</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <p>ID статуса</p>
+                </td>
+                <td>
+                    <p>@Model.StatusId</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Описание</p>
+                </td>
+                <td>
+                    <p>@Model.Description</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
