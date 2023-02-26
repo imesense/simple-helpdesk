@@ -2,6 +2,9 @@
     ViewData["Title"] = "Главная страница";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Добро пожаловать</h1>
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <a asp-area="" asp-controller="Ticket" asp-action="Index">Перейти к списку заявок</a>
+        <a asp-area="" asp-controller="Ticket" asp-action="Create">Создать заявку</a>
+    </div>
 </div>
