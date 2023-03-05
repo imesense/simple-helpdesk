@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-using Helpdesk.WebApp.Models;
+using Helpdesk.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

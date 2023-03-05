@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-using Helpdesk.WebApp.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Helpdesk.Models;
 
 namespace Helpdesk.WebApp.Controllers;
 

@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-using Helpdesk.WebApp.Models;
+using Helpdesk.Models;
 
-using UserModel = Helpdesk.WebApp.Models.User;
+using UserModel = Helpdesk.Models.User;
 
 namespace Helpdesk.WebApp.Controllers;
 

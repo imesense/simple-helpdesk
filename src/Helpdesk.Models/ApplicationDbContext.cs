@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Helpdesk.WebApp.Models;
+namespace Helpdesk.Models;
 
 public class ApplicationDbContext : DbContext {
     public DbSet<Location> Locations { get; set; }
