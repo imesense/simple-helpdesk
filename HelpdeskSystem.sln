@@ -20,6 +20,8 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpdesk.Models", "src\Helpdesk.Models\Helpdesk.Models.csproj", "{A7894B63-AB47-425D-9900-B886D1534FDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpdesk.Models.Tests", "src\Helpdesk.Models.Tests\Helpdesk.Models.Tests.csproj", "{C77A6DE2-363C-4753-81DE-7A554E640F30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{A7894B63-AB47-425D-9900-B886D1534FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7894B63-AB47-425D-9900-B886D1534FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7894B63-AB47-425D-9900-B886D1534FDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C77A6DE2-363C-4753-81DE-7A554E640F30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C77A6DE2-363C-4753-81DE-7A554E640F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C77A6DE2-363C-4753-81DE-7A554E640F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C77A6DE2-363C-4753-81DE-7A554E640F30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
