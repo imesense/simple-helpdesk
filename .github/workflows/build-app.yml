@@ -26,9 +26,13 @@ on:
       - 'Dockerfile'
       - 'libman.json'
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
-  build-app:
-    name: 'Building'
+  build:
+    name: 'Build'
 
     strategy:
       matrix:
@@ -66,12 +70,127 @@ jobs:
         run: |
           dotnet build HelpdeskSystem.sln -p:Configuration=${{ matrix.config }} --no-restore
 
-      - name: Build image
-        run: |
-          docker build . --file Dockerfile --tag helpdesksystem:$(date +%s)
-
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: bin-${{ matrix.config }}-${{ github.sha }}
           path: bin/${{ matrix.config }}/
+
+  test:
+    name: 'Test'
+
+    needs: build
+
+    strategy:
+      matrix:
+        system:
+          - windows-latest
+          - ubuntu-latest
+        config:
+          - Debug
+          - Release
+
+    runs-on: ${{ matrix.system }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+
+      - name: Restore dependencies
+        run: |
+          dotnet restore HelpdeskSystem.sln
+
+      - name: Run tests
+        run: |
+          dotnet test HelpdeskSystem.sln --no-restore
+
+  publish-docker:
+    name: 'Publish (Docker)'
+
+    needs: test
+
+    strategy:
+      matrix:
+        system:
+          - ubuntu-latest
+        config:
+          - Debug
+          - Release
+
+    runs-on: ${{ matrix.system }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build image
+        run: |
+          docker build . --file Dockerfile --tag helpdesksystem:$(date +%s)
+
+  publish-dotnet:
+    name: 'Publish (.NET)'
+
+    needs: test
+
+    strategy:
+      matrix:
+        system:
+          - windows-latest
+          - ubuntu-latest
+        config:
+          - Debug
+          - Release
+        runtime:
+          - win-x86
+          - win-x64
+
+    runs-on: ${{ matrix.system }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+
+      - name: Setup Library Manager
+        run: |
+          dotnet tool install --global Microsoft.Web.LibraryManager.Cli
+
+      - name: Restore dependencies
+        run: |
+          dotnet restore HelpdeskSystem.sln
+          cd src/Helpdesk.WebApp
+          libman restore
+          cd ../..
+
+      - name: Publish application
+        run: |
+          dotnet publish src\Helpdesk.WebApp\Helpdesk.WebApp.csproj `
+            --runtime ${{ matrix.runtime }} `
+            --self-contained true `
+            -p:PublishSingleFile=true `
+            -p:IncludeAllContentForSelfExtract=true `
+            -p:EnableCompressionInSingleFile=true `
+            -p:DebugSymbols=false `
+            -p:DebugType=None `
+            --no-restore
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: publish-${{ matrix.runtime }}-${{ github.sha }}
+          path: bin/${{ matrix.config }}/${{ matrix.runtime }}/publish/
