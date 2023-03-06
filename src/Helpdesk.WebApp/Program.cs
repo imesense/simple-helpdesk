@@ -12,19 +12,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddAuthentication("Helpdesk")
-    .AddNegotiate()
-    .AddCookie("Helpdesk", options => {
-        options.Cookie.Name = ".AuthCookie";
-        options.ExpireTimeSpan = TimeSpan.FromDays(30);
-        options.SlidingExpiration = true;
-    });
-
-builder.Services.AddAuthorization(options => {
-    // By default, all incoming requests will be authorized according to the default policy
-    options.FallbackPolicy = options.DefaultPolicy;
-});
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -44,7 +31,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseStatusCodePagesWithRedirects("/Error/");
