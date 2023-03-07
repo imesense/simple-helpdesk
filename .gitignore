@@ -9,5 +9,8 @@
 bin/
 obj/
 
-# Library Manager packages
+# Test results
+TestResults/
+
+# Dependencies
 **/wwwroot/lib/
