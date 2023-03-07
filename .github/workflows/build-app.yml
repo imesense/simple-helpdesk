@@ -180,6 +180,7 @@ jobs:
           dotnet publish src\Helpdesk.WebApp\Helpdesk.WebApp.csproj `
             --runtime ${{ matrix.runtime }} `
             --self-contained true `
+            -p:Configuration=${{ matrix.config }} `
             -p:PublishSingleFile=true `
             -p:IncludeAllContentForSelfExtract=true `
             -p:EnableCompressionInSingleFile=true `
