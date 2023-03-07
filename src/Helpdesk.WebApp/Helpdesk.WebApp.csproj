@@ -5,8 +5,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>aspnet-6a9264aa-10b8-4214-aa35-35d3e8c2b9af</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <DockerfileContext>..\..</DockerfileContext>
-        <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+        <DockerfileContext>.</DockerfileContext>
+        <DockerfileFile>$(ProjectDir)\Dockerfile</DockerfileFile>
+        <DockerComposeProjectPath>$(ProjectDir)\docker-compose.dcproj</DockerComposeProjectPath>
     </PropertyGroup>
 
     <ItemGroup>
