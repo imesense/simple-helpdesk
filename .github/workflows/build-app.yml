@@ -190,5 +190,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: publish-${{ matrix.runtime }}-${{ github.sha }}
+          name: publish-${{ matrix.runtime }}-${{ matrix.config }}-${{ github.sha }}
           path: bin/${{ matrix.config }}/net7.0/${{ matrix.runtime }}/publish/
