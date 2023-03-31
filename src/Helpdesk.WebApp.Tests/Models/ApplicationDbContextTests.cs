@@ -7,9 +7,9 @@ namespace Helpdesk.WebApp.Tests.Models;
 [TestClass]
 public class ApplicationDbContextTests {
     [TestMethod]
-    public void Can_Create_ApplicationDbContext() {
+    public void DbContext_Can_Be_Created() {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase(databaseName: "Can_Create_ApplicationDbContext")
+            .UseInMemoryDatabase(databaseName: "DbContext_Can_Be_Created")
             .Options;
 
         var dbContext = new ApplicationDbContext(options);
@@ -18,9 +18,9 @@ public class ApplicationDbContextTests {
     }
 
     [TestMethod]
-    public async Task Can_Save_Location() {
+    public async Task Location_Can_Be_Saved() {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase(databaseName: "Can_Save_Location")
+            .UseInMemoryDatabase(databaseName: "Location_Can_Be_Saved")
             .Options;
         var location = new Location {
             Name = "Test Location",
@@ -38,9 +38,9 @@ public class ApplicationDbContextTests {
     }
 
     [TestMethod]
-    public async Task Can_Delete_Location() {
+    public async Task Location_Can_Be_Deleted() {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase(databaseName: "Can_Delete_Location")
+            .UseInMemoryDatabase(databaseName: "Location_Can_Be_Deleted")
             .Options;
         var location = new Location {
             Name = "Test Location",
