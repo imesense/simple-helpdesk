@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Helpdesk.Models.Tests;
+using Helpdesk.WebApp.Models;
+
+namespace Helpdesk.WebApp.Tests.Models;
 
 [TestClass]
 public class LocationTests {
     [TestMethod]
-    public void Location_Id_Should_Be_Set() {
+    public void Location_LocationId_Should_Be_Set() {
         var location = new Location {
             LocationId = 1,
         };
@@ -41,10 +43,7 @@ public class LocationTests {
     public void Location_Cabinets_Should_Be_Initialized() {
         var location = new Location {
             Cabinets = new[] {
-                new Cabinet {
-                    CabinetId = 1,
-                    Number = "1",
-                }
+                new Cabinet()
             }
         };
         Assert.IsNotNull(location.Cabinets);

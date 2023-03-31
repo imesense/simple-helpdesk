@@ -18,6 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Helpdesk.Models\Helpdesk.Models.csproj" />
+        <ProjectReference Include="..\Helpdesk.WebApp\Helpdesk.WebApp.csproj" />
     </ItemGroup>
 </Project>

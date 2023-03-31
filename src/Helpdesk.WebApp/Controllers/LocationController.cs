@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-using Helpdesk.Models;
+using Helpdesk.WebApp.Models;
 
 namespace Helpdesk.WebApp.Controllers;
 

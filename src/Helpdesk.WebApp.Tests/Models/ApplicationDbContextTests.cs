@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Helpdesk.Models.Tests;
+using Helpdesk.WebApp.Models;
+
+namespace Helpdesk.WebApp.Tests.Models;
 
 [TestClass]
 public class ApplicationDbContextTests {
