@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Helpdesk.WebApp.Models;
 
-public class ApplicationDbContext : DbContext {
+public class ApplicationDbContext : DbContext, IDbContext {
     public DbSet<Location> Locations { get; set; }
     public DbSet<Cabinet> Cabinets { get; set; }
     public DbSet<User> Users { get; set; }
