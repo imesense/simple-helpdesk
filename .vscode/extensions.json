@@ -5,6 +5,7 @@
         "vscode-icons-team.vscode-icons",
         "ms-azuretools.vscode-docker",
         "EditorConfig.EditorConfig",
-        "DavidAnson.vscode-markdownlint"
+        "DavidAnson.vscode-markdownlint",
+        "formulahendry.dotnet-test-explorer"
     ]
 }
