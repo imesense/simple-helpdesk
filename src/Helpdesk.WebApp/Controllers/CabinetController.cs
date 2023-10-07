@@ -9,10 +9,10 @@ namespace Helpdesk.WebApp.Controllers;
 [Route("[controller]")]
 public class CabinetController : Controller {
     private readonly ILogger<CabinetController> _logger;
-    private readonly ApplicationDbContext _context;
+    private readonly IDbContext _context;
 
     public CabinetController(ILogger<CabinetController> logger,
-        ApplicationDbContext context) {
+        IDbContext context) {
         _logger = logger;
         _context = context;
     }

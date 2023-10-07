@@ -8,10 +8,10 @@ namespace Helpdesk.WebApp.Controllers;
 [Route("[controller]")]
 public class LocationController : Controller {
     private readonly ILogger<LocationController> _logger;
-    private readonly ApplicationDbContext _context;
+    private readonly IDbContext _context;
 
     public LocationController(ILogger<LocationController> logger,
-        ApplicationDbContext context) {
+        IDbContext context) {
         _logger = logger;
         _context = context;
     }
