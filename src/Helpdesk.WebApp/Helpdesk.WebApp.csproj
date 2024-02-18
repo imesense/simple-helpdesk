@@ -11,7 +11,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.16" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.16">
             <PrivateAssets>all</PrivateAssets>
