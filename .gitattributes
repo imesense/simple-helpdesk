@@ -22,6 +22,9 @@ Dockerfile*    text eof=lf   encoding=utf-8
 *.cshtml text eof=crlf encoding=utf-8
 *.css    text eof=crlf encoding=utf-8
 *.js     text eof=crlf encoding=utf-8
+*.cshtml linguist-vendored
+*.css    linguist-vendored
+*.js     linguist-vendored
 
 # Documents
 *.md text eol=crlf encoding=utf-8
