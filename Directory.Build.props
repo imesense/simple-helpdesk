@@ -5,6 +5,10 @@
         <BaseOutputPath>$(MSBuildThisFileDirectory)bin\</BaseOutputPath>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
         <DebugSymbols>false</DebugSymbols>
         <DebugType>None</DebugType>
