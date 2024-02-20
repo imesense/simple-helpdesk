@@ -36,18 +36,25 @@ defaults:
 
 jobs:
   build-app:
-    name: 'Build'
+    name: 'Build application'
 
     strategy:
       matrix:
         system:
           - windows-latest
           - ubuntu-latest
+        framework:
+          - net6.0
+          - net7.0
+          - net8.0
         config:
           - Debug
           - Release
 
     runs-on: ${{ matrix.system }}
+
+    env:
+      HelpdeskSolution: HelpdeskSystem.sln
 
     steps:
       - name: Checkout
@@ -58,30 +65,31 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
-
-      - name: Setup Library Manager
-        run: |
-          dotnet tool install --global Microsoft.Web.LibraryManager.Cli
+          dotnet-version: '8.0.x'
 
       - name: Restore dependencies
         run: |
-          dotnet restore HelpdeskSystem.sln
+          dotnet tool restore
+          dotnet restore $env:HelpdeskSolution `
+            --locked-mode
           cd src/Helpdesk.WebApp
-          libman restore
+          dotnet libman restore
 
       - name: Build solution
         run: |
-          dotnet build HelpdeskSystem.sln -p:Configuration=${{ matrix.config }} --no-restore
+          dotnet build $env:HelpdeskSolution `
+            --framework ${{ matrix.framework }} `
+            --configuration ${{ matrix.config }} `
+            --no-restore
 
-      - name: Upload artifacts
+      - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: bin-${{ matrix.config }}-${{ github.sha }}
-          path: bin/${{ matrix.config }}/
+          name: helpdesk-${{ matrix.system }}-${{ matrix.framework }}-${{ matrix.config }}-${{ github.sha }}
+          path: bin/${{ matrix.config }}/${{ matrix.framework }}/
 
   test-app:
-    name: 'Test'
+    name: 'Test application'
 
     needs: build-app
 
@@ -90,11 +98,18 @@ jobs:
         system:
           - windows-latest
           - ubuntu-latest
+        framework:
+          - net6.0
+          - net7.0
+          - net8.0
         config:
           - Debug
           - Release
 
     runs-on: ${{ matrix.system }}
+
+    env:
+      HelpdeskSolution: HelpdeskSystem.sln
 
     steps:
       - name: Checkout
@@ -105,15 +120,17 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: '8.0.x'
 
       - name: Restore dependencies
         run: |
-          dotnet restore HelpdeskSystem.sln
+          dotnet restore $env:HelpdeskSolution `
+            --locked-mode
 
       - name: Run tests
         run: |
-          dotnet test HelpdeskSystem.sln --no-restore
+          dotnet test $env:HelpdeskSolution `
+            --no-restore
 
   publish-docker:
     name: 'Publish image'
@@ -125,7 +142,6 @@ jobs:
         system:
           - ubuntu-latest
         config:
-          - Debug
           - Release
 
     runs-on: ${{ matrix.system }}
@@ -136,9 +152,24 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set tag
+        run: |
+          $tag = [math]::Round((New-TimeSpan -Start (Get-Date "1970-01-01") -End (Get-Date)).TotalSeconds)
+          Add-Content -Path $env:GITHUB_ENV -Value "tag=$tag"
+
       - name: Build image
         run: |
-          docker build . --file Dockerfile --tag helpdesksystem:$(date +%s)
+          docker build . --file Dockerfile --tag helpdesk:${{ env.tag }}
+
+      - name: Save image
+        run: |
+          docker save -o helpdesk-${{ env.tag }}.tar helpdesk:${{ env.tag }}
+
+      - name: Upload image
+        uses: actions/upload-artifact@v4
+        with:
+          name: helpdesk-${{ env.tag }}-${{ github.sha }}
+          path: helpdesk-${{ env.tag }}.tar
 
   publish-dotnet:
     name: 'Publish application'
@@ -149,14 +180,21 @@ jobs:
       matrix:
         system:
           - windows-latest
-        config:
-          - Debug
-          - Release
+        framework:
+          - net6.0
+          - net7.0
+          - net8.0
         runtime:
           - win-x86
           - win-x64
+          - linux-x64
+        config:
+          - Release
 
     runs-on: ${{ matrix.system }}
+
+    env:
+      HelpdeskProject: src\Helpdesk.WebApp\Helpdesk.WebApp.csproj
 
     steps:
       - name: Checkout
@@ -167,22 +205,20 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
-
-      - name: Setup Library Manager
-        run: |
-          dotnet tool install --global Microsoft.Web.LibraryManager.Cli
+          dotnet-version: '8.0.x'
 
       - name: Restore dependencies
         run: |
+          dotnet tool restore
+          dotnet restore $env:HelpdeskSolution `
+            --locked-mode
           cd src/Helpdesk.WebApp
-          libman restore
-          cd ../..
+          dotnet libman restore
 
       - name: Publish application
         run: |
-          dotnet publish src\Helpdesk.WebApp\Helpdesk.WebApp.csproj `
-            --framework net7.0 `
+          dotnet publish $env:HelpdeskProject `
+            --framework ${{ matrix.framework }} `
             --runtime ${{ matrix.runtime }} `
             --self-contained true `
             -p:Configuration=${{ matrix.config }} `
@@ -192,8 +228,8 @@ jobs:
             -p:DebugSymbols=false `
             -p:DebugType=None
 
-      - name: Upload artifacts
+      - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: publish-${{ matrix.runtime }}-${{ matrix.config }}-${{ github.sha }}
-          path: bin/${{ matrix.config }}/net7.0/${{ matrix.runtime }}/publish/
+          name: helpdesk-${{ matrix.framework }}-${{ matrix.runtime }}-${{ matrix.config }}-${{ github.sha }}
+          path: bin/${{ matrix.config }}/${{ matrix.framework }}/${{ matrix.runtime }}/publish/
