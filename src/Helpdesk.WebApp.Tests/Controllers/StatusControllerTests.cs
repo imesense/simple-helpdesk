@@ -14,14 +14,14 @@ namespace Helpdesk.WebApp.Tests.Controllers;
 [TestClass]
 public class StatusControllerTests {
     private Mock<ILogger<StatusController>> _logger = null!;
-    private Mock<IDbContext> _context = null!;
+    private Mock<IHelpdeskDbContext> _context = null!;
 
     private StatusController _controller = null!;
 
     [TestInitialize]
     public void Initialize() {
         _logger = new Mock<ILogger<StatusController>>();
-        _context = new Mock<IDbContext>();
+        _context = new Mock<IHelpdeskDbContext>();
         _controller = new StatusController(_logger.Object, _context.Object);
     }
 

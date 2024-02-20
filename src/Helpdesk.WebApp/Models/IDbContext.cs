@@ -2,8 +2,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Helpdesk.WebApp.Models;
 
-public interface IDbContext {
-    DbSet<TEntity> Set<TEntity>() where TEntity : class;
+public interface IHelpdeskDbContext {
+    DbSet<TEntity> Set<TEntity>()
+        where TEntity : class;
 
     int SaveChanges();
 

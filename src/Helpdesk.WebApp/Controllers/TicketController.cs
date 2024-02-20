@@ -11,10 +11,10 @@ namespace Helpdesk.WebApp.Controllers;
 [Route("[controller]")]
 public class TicketController : Controller {
     private readonly ILogger<TicketController> _logger;
-    private readonly IDbContext _context;
+    private readonly IHelpdeskDbContext _context;
 
     public TicketController(ILogger<TicketController> logger,
-        IDbContext context) {
+        IHelpdeskDbContext context) {
         _logger = logger;
         _context = context;
     }

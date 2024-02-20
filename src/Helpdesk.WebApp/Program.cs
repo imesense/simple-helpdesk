@@ -5,7 +5,7 @@ using Helpdesk.WebApp.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<HelpdeskDbContext>(options =>
     options.UseSqlite("Data Source=\"" +
         Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) +
         "\\Helpdesk.db\""));
@@ -37,6 +37,7 @@ app.UseStatusCodePagesWithRedirects("/Error/");
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+);
 
 app.Run();

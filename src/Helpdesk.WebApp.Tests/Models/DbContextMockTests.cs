@@ -9,19 +9,19 @@ namespace Helpdesk.WebApp.Tests.Models;
 [TestClass]
 public class DbContextMockTests {
     private class TestService {
-        public TestService(IDbContext context) => _ = context;
+        public TestService(IHelpdeskDbContext context) => _ = context;
     }
 
-    private Mock<IDbContext> _contextMock = null!;
+    private Mock<IHelpdeskDbContext> _contextMock = null!;
 
     [TestInitialize]
     public void Initialize() {
-        _contextMock = new Mock<IDbContext>();
+        _contextMock = new Mock<IHelpdeskDbContext>();
     }
 
     [TestMethod]
     public void DbContext_CanBeCreated() {
-        var service = new TestService(Mock.Of<IDbContext>());
+        var service = new TestService(Mock.Of<IHelpdeskDbContext>());
         Assert.IsNotNull(service);
     }
 

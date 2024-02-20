@@ -8,10 +8,10 @@ namespace Helpdesk.WebApp.Controllers;
 [Route("[controller]")]
 public class UserController : Controller {
     private readonly ILogger<UserController> _logger;
-    private readonly IDbContext _context;
+    private readonly IHelpdeskDbContext _context;
 
     public UserController(ILogger<UserController> logger,
-        IDbContext context) {
+        IHelpdeskDbContext context) {
         _logger = logger;
         _context = context;
     }

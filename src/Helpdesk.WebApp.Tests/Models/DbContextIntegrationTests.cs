@@ -6,14 +6,14 @@ namespace Helpdesk.WebApp.Tests.Models;
 
 [TestClass]
 public class DbContextIntegrationTests {
-    private ApplicationDbContext _context = null!;
+    private HelpdeskDbContext _context = null!;
 
     [TestInitialize]
     public void Initialize() {
-        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+        var options = new DbContextOptionsBuilder<HelpdeskDbContext>()
             .UseInMemoryDatabase(databaseName: "TestDatabase")
             .Options;
-        _context = new ApplicationDbContext(options);
+        _context = new HelpdeskDbContext(options);
     }
 
     [TestCleanup]
@@ -23,10 +23,10 @@ public class DbContextIntegrationTests {
 
     [TestMethod]
     public void ApplicationDbContext_ShouldCreateDatabase() {
-        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+        var options = new DbContextOptionsBuilder<HelpdeskDbContext>()
             .UseInMemoryDatabase(databaseName: "CreatedDatabase")
             .Options;
-        var context = new ApplicationDbContext(options);
+        var context = new HelpdeskDbContext(options);
         Assert.IsNotNull(context);
 
     }
