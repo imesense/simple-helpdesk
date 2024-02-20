@@ -11,8 +11,10 @@ on:
       - '*.props'
       - '*.targets'
       - '*.yml'
-      - 'Dockerfile'
-      - 'libman.json'
+      - '*.yaml'
+      - '*.json'
+      - 'Dockerfile*'
+      - '*.dockerfile'
   pull_request:
     branches:
       - '**'
@@ -23,15 +25,17 @@ on:
       - '*.props'
       - '*.targets'
       - '*.yml'
-      - 'Dockerfile'
-      - 'libman.json'
+      - '*.yaml'
+      - '*.json'
+      - 'Dockerfile*'
+      - '*.dockerfile'
 
 defaults:
   run:
     shell: pwsh
 
 jobs:
-  build:
+  build-app:
     name: 'Build'
 
     strategy:
@@ -47,14 +51,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: Setup Library Manager
         run: |
@@ -71,15 +75,15 @@ jobs:
           dotnet build HelpdeskSystem.sln -p:Configuration=${{ matrix.config }} --no-restore
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bin-${{ matrix.config }}-${{ github.sha }}
           path: bin/${{ matrix.config }}/
 
-  test:
+  test-app:
     name: 'Test'
 
-    needs: build
+    needs: build-app
 
     strategy:
       matrix:
@@ -94,14 +98,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: Restore dependencies
         run: |
@@ -112,9 +116,9 @@ jobs:
           dotnet test HelpdeskSystem.sln --no-restore
 
   publish-docker:
-    name: 'Publish (Docker)'
+    name: 'Publish image'
 
-    needs: test
+    needs: test-app
 
     strategy:
       matrix:
@@ -128,7 +132,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -137,9 +141,9 @@ jobs:
           docker build . --file Dockerfile --tag helpdesksystem:$(date +%s)
 
   publish-dotnet:
-    name: 'Publish (.NET)'
+    name: 'Publish application'
 
-    needs: test
+    needs: test-app
 
     strategy:
       matrix:
@@ -156,14 +160,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
 
       - name: Setup Library Manager
         run: |
@@ -178,6 +182,7 @@ jobs:
       - name: Publish application
         run: |
           dotnet publish src\Helpdesk.WebApp\Helpdesk.WebApp.csproj `
+            --framework net7.0 `
             --runtime ${{ matrix.runtime }} `
             --self-contained true `
             -p:Configuration=${{ matrix.config }} `
@@ -188,7 +193,7 @@ jobs:
             -p:DebugType=None
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: publish-${{ matrix.runtime }}-${{ matrix.config }}-${{ github.sha }}
           path: bin/${{ matrix.config }}/net7.0/${{ matrix.runtime }}/publish/
