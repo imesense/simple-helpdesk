@@ -3,9 +3,8 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using MockQueryable.Moq;
-
 using Moq;
+using MockQueryable.Moq;
 
 using Helpdesk.WebApp.Controllers;
 using Helpdesk.WebApp.Models;
