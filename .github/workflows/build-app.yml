@@ -67,6 +67,26 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Cache packages
+        uses: actions/cache@v4
+        with:
+          key: Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
+            Helpdesk-NuGet-
+          path: |
+            ~/.nuget/packages
+
+      - name: Cache libraries
+        uses: actions/cache@v4
+        with:
+          key: Helpdesk-Libman-${{ hashFiles('**/libman.json') }}
+          restore-keys: |
+            Helpdesk-Libman-${{ hashFiles('**/libman.json') }}
+            Helpdesk-Libman-
+          path: |
+            src/Helpdesk.WebApp/wwwroot/lib
+
       - name: Restore dependencies
         run: |
           dotnet tool restore
@@ -121,6 +141,16 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+
+      - name: Cache packages
+        uses: actions/cache@v4
+        with:
+          key: Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
+            Helpdesk-NuGet-
+          path: |
+            ~/.nuget/packages
 
       - name: Restore dependencies
         run: |
@@ -206,6 +236,26 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+
+      - name: Cache packages
+        uses: actions/cache@v4
+        with:
+          key: Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
+            Helpdesk-NuGet-
+          path: |
+            ~/.nuget/packages
+
+      - name: Cache libraries
+        uses: actions/cache@v4
+        with:
+          key: Helpdesk-Libman-${{ hashFiles('**/libman.json') }}
+          restore-keys: |
+            Helpdesk-Libman-${{ hashFiles('**/libman.json') }}
+            Helpdesk-Libman-
+          path: |
+            src/Helpdesk.WebApp/wwwroot/lib
 
       - name: Restore dependencies
         run: |
