@@ -41,8 +41,10 @@ jobs:
     strategy:
       matrix:
         system:
-          - windows-latest
-          - ubuntu-latest
+          - windows-2022
+          - windows-2019
+          - ubuntu-22.04
+          - ubuntu-20.04
         framework:
           - net6.0
           - net7.0
@@ -117,8 +119,10 @@ jobs:
     strategy:
       matrix:
         system:
-          - windows-latest
-          - ubuntu-latest
+          - windows-2022
+          - windows-2019
+          - ubuntu-22.04
+          - ubuntu-20.04
         framework:
           - net6.0
           - net7.0
@@ -210,7 +214,7 @@ jobs:
     strategy:
       matrix:
         system:
-          - windows-latest
+          - ubuntu-latest
         framework:
           - net6.0
           - net7.0
