@@ -23,7 +23,7 @@ indent_style = space
 insert_final_newline = true
 
 # JSON-based files
-[*.json]
+[*.{json,code-workspace,vsconfig}]
 
 # Common settings
 charset = utf-8
@@ -43,7 +43,7 @@ indent_style = space
 insert_final_newline = true
 
 # Docker files
-[Dockerfile*]
+[{Dockerfile*,*.dockerfile}]
 
 # Common settings
 charset = utf-8

@@ -8,14 +8,17 @@
 .editorconfig  text eol=crlf encoding=utf-8
 .dockerignore  text eol=lf   encoding=utf-8
 Dockerfile*    text eof=lf   encoding=utf-8
+*.dockerfile   text eof=lf   encoding=utf-8
 *.json         text eol=crlf encoding=utf-8
+*.vsconfig     text eol=crlf encoding=utf-8
 *.yml          text eof=lf   encoding=utf-8
 *.yaml         text eof=lf   encoding=utf-8
 
 # Projects and solutions
-*.sln    text eol=crlf encoding=utf-8-bom
-*.csproj text eol=crlf encoding=utf-8
-*.props  text eol=crlf encoding=utf-8
+*.sln     text eol=crlf encoding=utf-8-bom
+*.csproj  text eol=crlf encoding=utf-8
+*.props   text eol=crlf encoding=utf-8
+*.targets text eol=crlf encoding=utf-8
 
 # Sources
 *.cs     text eof=crlf encoding=utf-8
