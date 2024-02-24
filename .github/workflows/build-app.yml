@@ -70,20 +70,21 @@ jobs:
       - name: Cache packages
         uses: actions/cache@v4
         with:
-          key: Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
+          key: Helpdesk-NuGet-${{ runner.os }}-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
-            Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
-            Helpdesk-NuGet-
+            Helpdesk-NuGet-${{ runner.os }}-${{ hashFiles('**/packages.lock.json') }}
+            Helpdesk-NuGet-${{ runner.os }}-
           path: |
             ~/.nuget/packages
 
       - name: Cache libraries
         uses: actions/cache@v4
         with:
-          key: Helpdesk-Libman-${{ hashFiles('**/libman.json') }}
+          key: Helpdesk-Libman-Common-${{ hashFiles('**/libman.json') }}
+          enableCrossOsArchive: true
           restore-keys: |
-            Helpdesk-Libman-${{ hashFiles('**/libman.json') }}
-            Helpdesk-Libman-
+            Helpdesk-Libman-Common-${{ hashFiles('**/libman.json') }}
+            Helpdesk-Libman-Common-
           path: |
             src/Helpdesk.WebApp/wwwroot/lib
 
@@ -145,10 +146,10 @@ jobs:
       - name: Cache packages
         uses: actions/cache@v4
         with:
-          key: Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
+          key: Helpdesk-NuGet-${{ runner.os }}-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
-            Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
-            Helpdesk-NuGet-
+            Helpdesk-NuGet-${{ runner.os }}-${{ hashFiles('**/packages.lock.json') }}
+            Helpdesk-NuGet-${{ runner.os }}-
           path: |
             ~/.nuget/packages
 
@@ -224,6 +225,7 @@ jobs:
     runs-on: ${{ matrix.system }}
 
     env:
+      HelpdeskSolution: HelpdeskSystem.sln
       HelpdeskProject: src\Helpdesk.WebApp\Helpdesk.WebApp.csproj
 
     steps:
@@ -240,20 +242,21 @@ jobs:
       - name: Cache packages
         uses: actions/cache@v4
         with:
-          key: Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
+          key: Helpdesk-NuGet-${{ runner.os }}-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
-            Helpdesk-NuGet-${{ hashFiles('**/packages.lock.json') }}
-            Helpdesk-NuGet-
+            Helpdesk-NuGet-${{ runner.os }}-${{ hashFiles('**/packages.lock.json') }}
+            Helpdesk-NuGet-${{ runner.os }}-
           path: |
             ~/.nuget/packages
 
       - name: Cache libraries
         uses: actions/cache@v4
         with:
-          key: Helpdesk-Libman-${{ hashFiles('**/libman.json') }}
+          key: Helpdesk-Libman-Common-${{ hashFiles('**/libman.json') }}
+          enableCrossOsArchive: true
           restore-keys: |
-            Helpdesk-Libman-${{ hashFiles('**/libman.json') }}
-            Helpdesk-Libman-
+            Helpdesk-Libman-Common-${{ hashFiles('**/libman.json') }}
+            Helpdesk-Libman-Common-
           path: |
             src/Helpdesk.WebApp/wwwroot/lib
 
