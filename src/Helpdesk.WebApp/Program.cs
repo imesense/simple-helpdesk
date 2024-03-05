@@ -5,6 +5,7 @@ using Helpdesk.WebApp.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
+builder.Services.AddTransient<IHelpdeskDbContext, HelpdeskDbContext>();
 builder.Services.AddDbContext<HelpdeskDbContext>(options =>
     options.UseSqlite("Data Source=\"" +
         Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) +
